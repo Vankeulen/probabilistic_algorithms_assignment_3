@@ -176,6 +176,6 @@ for (let k = 0; k < + 9; k++) {
     times.push(average);
 
 }
-for (let k = 0; k < 8; k++) {
+for (let k = 0; k <= 8; k++) {
     console.log(`Average trial for k=${k}: ${times[k]}ms`)
 }
