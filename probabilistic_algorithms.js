@@ -1,3 +1,8 @@
+// Nicholas VanKeulen
+// CS4050
+// Professor Aaron Gordon 
+// Programming Assignment #3
+
 function randInt(min, max) {
 	return Math.floor(min + Math.random() * (max - min));
 }
@@ -16,8 +21,8 @@ function pi() {
 
 		for (let i = 0; i < darts; i++) {
 			// Pick a point within (-1,-1) to (1,1)
-			let x = -1 + (2 * Math.random())
-			let y = -1 + (2 * Math.random())
+			let x = -1 + (2 * Math.random());
+			let y = -1 + (2 * Math.random());
 
 			// See if it is inside circle
 			let length = Math.sqrt(x * x + y * y);
@@ -29,21 +34,19 @@ function pi() {
 
 		// calculate pi based on hit ratio and total area.
 		let almostPi = 4 * (hits / darts);
-		console.log(`Ratio: ${almostPi} @ ${darts.toLocaleString()} darts`)
+		console.log(`Ratio: ${almostPi} @ ${darts.toLocaleString()} darts`);
 
 	}
 
 	// Do it with increasing numbers of darts
-	probalisticPI(1000);
-	/*
-	probalisticPI(10000);
-	probalisticPI(100000);
-	probalisticPI(1000000);
-	probalisticPI(10000000);
-	//*/
-	probalisticPI(100000000);
+	probalisticPI(parseInt("1,000".replace(/,/g, "")));
+	probalisticPI(parseInt("10,000".replace(/,/g, "")));
+	probalisticPI(parseInt("100,000".replace(/,/g, "")));
+	probalisticPI(parseInt("1,000,000".replace(/,/g, "")));
+	probalisticPI(parseInt("100,000,000".replace(/,/g, "")));
+	// probalisticPI(parseInt("1,000,000,000".replace(/,/g, "")));
 }
-// pi();
+pi();
 
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -60,9 +63,7 @@ function primes() {
 		for (let i = 0; i < k; i++) {
 			// pick value n from (1 < n < P)
 			let n = randInt(2, P);
-			if (n === 0 || n === 1) {
-				n = 2;
-			}
+			
 
 			// Could improve accuracy by not using 
 			// numbers between (P/2 and P)
@@ -102,7 +103,9 @@ function primes() {
 		// Return the list of primes that was built
 		return primes;
 	}
-	let primesUpTo10000 = allPrimes(100000);
+	const MAX_VALUE = 100000;
+	const SQRT_MAX_VALUE = Math.floor(Math.sqrt(MAX_VALUE));
+	let primesList = allPrimes(MAX_VALUE);
 
 
 	// Check a single value with probalisticPrime with some k-value
@@ -114,7 +117,7 @@ function primes() {
 		let correct = 0;
 		// See if the value is actually a prime
 		// by checking the list of primes
-		let actuallyAPrime = primesUpTo10000.includes(val);
+		let actuallyAPrime = primesList.includes(val);
 		for (let i = 0; i < 1000; i++) {
 			// Guess at if the value is prime or not
 			let probAPrime = probalisticPrime(val, k);
@@ -125,7 +128,7 @@ function primes() {
 			}
 		}
 		// Print score and k-value
-		console.log(`Checking ${val}: actually prime?${actuallyAPrime}...Got ${val}  ${correct} / 1000 at k=${k} right!`);
+		console.log(`Checking ${val}: actually prime?${actuallyAPrime}...Got ${correct} / 1000 Correct at k=${k} right!`);
 	}
 
 	// Makes a number divisible by some number, k
@@ -142,61 +145,110 @@ function primes() {
 	// to see how the accuracy changes
 	for (let k = 10; k <= 10000; k *= 10) {
 
-		// Some composite numbers
+		console.log("Some composite numbers");
 		checkProbalisticPrime(2 * 2 * 2 * 2 * 3 * 3 * 3, k);
 		checkProbalisticPrime(2 * 3 * 4 * 5 * 6, k);
 		checkProbalisticPrime(2 * 3 * 4 * 5 * 6 * 7, k);
 
-		// Some prime numbers
+		console.log("Some prime numbers");
 		checkProbalisticPrime(4637, k);
 		checkProbalisticPrime(1993, k);
 
-		// Multiples of 2
+		// Even numbers
+		console.log("Multiples of 2");
+		checkProbalisticPrime(8, k);
+		checkProbalisticPrime(40, k);
+		checkProbalisticPrime(46, k);
+		checkProbalisticPrime(80, k);
+		checkProbalisticPrime(442, k);
+		checkProbalisticPrime(222, k);
 		checkProbalisticPrime(4444, k);
 		checkProbalisticPrime(44444, k);
-		// Multiples of 3
+		checkProbalisticPrime(44448, k);
+		// Numbers where the sum of the digits is divisible by 3. 
+		console.log("Multiples of 3");
 		// 4+4+4+3 = 15, 15%3 = 0
+		checkProbalisticPrime(33, k);
+		checkProbalisticPrime(36, k);
+		checkProbalisticPrime(66, k);
+		checkProbalisticPrime(99, k);
+		checkProbalisticPrime(123, k);
+		checkProbalisticPrime(156, k);
+		checkProbalisticPrime(231, k);
+		checkProbalisticPrime(423, k);
 		checkProbalisticPrime(4443, k);
 		// 4+4+4+3+3 = 18, 18%3 = 0
 		checkProbalisticPrime(44433, k);
-		// Multiples of 5 
+		// Numbers whose final digit is a 5 
+		console.log("Multiples of 5");
 		// (anything ending in '5' in decimal is obviously a multiple of 5)
+		checkProbalisticPrime(45, k);
+		checkProbalisticPrime(65, k);
+		checkProbalisticPrime(445, k);
+		checkProbalisticPrime(645, k);
+		checkProbalisticPrime(745, k);
 		checkProbalisticPrime(4445, k);
 		checkProbalisticPrime(44445, k);
-
-		// Composites constructed from products
+		// Number constructed as the product of two positive integers.
+		console.log("Composites constructed from products");
 		checkProbalisticPrime(37 * 53, k);
+		for (let j = 0; j < 10; j++) {
+			let val1 = Math.floor(Math.random() * SQRT_MAX_VALUE);
+			let val2 = Math.floor(Math.random() * SQRT_MAX_VALUE);
+			checkProbalisticPrime(val1 * val2, k);
+		}
+
+		for (let j = 0; j < 10; j++) {
+			let val3 = Math.floor(Math.random() * 100);
+			let val4 = Math.floor(Math.random() * 100);
+			checkProbalisticPrime(val3 * val4, k);
+			
+		}
 
 
-		// Randomly generated non-prime numbers using 
-		// x = x - x%k
+		// Randomly generated numbers X that are then adjusted as follows:
+		// X = X - X%K <-- X will now be divisible by K. 
+		console.log("Modified prime numbers");
 		for (let j = 0; j < 5; j++) {
+			checkProbalisticPrime(makeNonPrime(100), k);
+		}
+		for (let j = 0; j < 5; j++) {
+			checkProbalisticPrime(makeNonPrime(1000), k);
+		}
+		for (let j = 0; j < 5; j++) {
+			checkProbalisticPrime(makeNonPrime(10000), k);
+		}
+		for (let j = 0; j < 5; j++) {
+		
 			checkProbalisticPrime(makeNonPrime(100000), k);
 		}
 	}
 
 }
-// primes();
+primes();
 
 
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
 // 3: Probalistic search
-function search() {
+function search(times) {
 	// Build a random array 
 	let nums = []
 	for (let i = 0; i < 1000; i++) {
-		let num = randInt(0, 10000);
+		let num = randInt(0, 10);
 		nums.push(num);
 	}
 
+	let numIterations = 0;
 	// Search an array for a target randomly
 	function probalisticSearch(arr, target) {
+		numIterations = 0;
 		// Make up to 5000 guesses as asked
 		for (let i = 0; i < 5000; i++) {
 			// Pick an index
 			let ind = randInt(0, arr.length);
+			numIterations++;
 			// See if target value is there
 			if (arr[ind] === target) {
 				// yay
@@ -211,23 +263,28 @@ function search() {
 	// Count times we get it wrong
 
 	let wrong = 0;
+	let sumComparisons = 0;
 	for (let i = 0; i < times; i++) {
 		// Find a value that is in the array
 		// pick an index and get the value...
 		let ind = randInt(0, nums.length);
-		let val = nums[ind]
+		let val = nums[ind];
 
 		// And try searching for that value
-		if (!probalisticSearch(nums, val)) {
+		let probSearch = probalisticSearch(nums, val);
+		sumComparisons += numIterations;
+		if (!probSearch) {
 			wrong += 1;
 		}
 	}
-
-	console.log(`Search was wrong ${wrong} times out of ${times}`);
+	let averageComparisons = sumComparisons / times;
+	console.log(`Search was wrong ${wrong} times out of ${times}. With an average number of ${averageComparisons} Comparisons`);
 
 
 }
-// search();
+for (let i = 0; i < 20; i++) {
+	search(100);
+}
 
 
 /////////////////////////////////////////////////
@@ -302,13 +359,13 @@ function monteCarloIntegration() {
 		let w = right - left;
 		// height of one trapezoid
 		let dx = w / n;
+		// Left edge of trapezoid
+		let x1 = left;
+		// length of left edge
+		let y1 = f(x1);
 		for (let i = 0; i < n; i++) {
-			// Left edge of trapezoid
-			let x1 = left + dx * i;
 			// Right edge of trapezoid
 			let x2 = x1 + dx;
-			// length of left edge
-			let y1 = f(x1);
 			// length of right edge
 			let y2 = f(x2);
 
@@ -320,6 +377,10 @@ function monteCarloIntegration() {
 			let a = dx * (y1 + y2) / 2;
 			// add area to sum
 			sum += a;
+
+			// Make right edge of this trap the left edge of the next trap
+			x1 = x2;
+			y1 = y2;
 		}
 		// Just return sum....
 		return sum;
@@ -361,23 +422,52 @@ function monteCarloIntegration() {
 		}
 	}
 
+	function check(f, name, n, area) {
+		let left = area.left;
+		let right = area.right;
 
-	// Do same integration for some regions and functions...
-	let a = dartThrow(yequalsx, 1000000, unitRect);
-	console.log(`with darts, area of y = x inside ${JSON.stringify(unitRect)}: ` + a);
-	a = randomMean(yequalsx, 1000000, -1, 1);
-	console.log(`with random mean, area of y = x from (-1, 1): ` + a);
-	a = trapizoidal(yequalsx, 1000, -1, 1);
-	console.log(`with trapizoidal, area of y = x from (-1, 1): ` + a);
+		let startDarts = new Date().getTime();
+		let dartResult = dartThrow(f, n, area);
+		let endDarts = new Date().getTime();
+		let dartTime = endDarts - startDarts;
 
+		let startMean = new Date().getTime();
+		let meanResult = randomMean(f, n, left, right);
+		let endMean = new Date().getTime();
+		let meanTime = endMean - startMean;
+
+		let startTrap = new Date().getTime();
+		let trapResult = trapizoidal(f, n, left, right);
+		let endTrap = new Date().getTime();
+		let trapTime = endTrap - startTrap;
+
+		console.log(`${name} inside ${JSON.stringify(area)}: Results:`
+			+ `\nDarts: ${dartTime}ms to get result: ${dartResult}`
+			+ `\nMeans: ${meanTime}ms to get result: ${meanResult}`
+			+ `\nTraps: ${trapTime}ms to get result: ${trapResult}`);
+
+	}
+
+	let MAX_DARTS = 10000000;
+
+	console.log("\n\nf(x)=x in (-1, 1)");
+	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
+		check(yequalsx, "f(x) = x", darts, unitRect)
+	}
+	
+	console.log("\n\nf(x)=x in (0, 1)");
 	let rect2 = { left: 0, right: 1, top: 1, bottom: 0 };
-	a = dartThrow(yequalsx, 1000000, rect2);
-	console.log(`with darts, area of y = x inside ${JSON.stringify(rect2)}: ` + a);
-	a = randomMean(yequalsx, 1000000, 0, 1);
-	console.log(`with random mean, area of y = x from (0, 1): ` + a);
-	a = trapizoidal(yequalsx, 1000, 0, 1);
-	console.log(`with trapizoidal, area of y = x from (0, 1): ` + a);
-
+	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
+		check(yequalsx, "f(x) = x", darts, rect2)
+	}
+	console.log("\n\nf(x)=sin(2x/PI) in (-1, 1)");
+	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
+		check(sin(1, 2/Math.PI), "f(x) = sin(2x/PI)", darts, unitRect)
+	}
+	console.log("\n\nf(x)=sin(2x/PI) in (0, 1)");
+	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
+		check(sin(1, 2/Math.PI), "f(x) = sin(2x/PI)", darts, rect2)
+	}
 	// Experiment for calculating pi/2
 	/*
 	let pi = Math.PI;
@@ -392,4 +482,4 @@ function monteCarloIntegration() {
 
 
 }
-// monteCarloIntegration();
+monteCarloIntegration();
