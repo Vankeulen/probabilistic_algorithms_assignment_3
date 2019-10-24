@@ -1,7 +1,3 @@
-// Nicholas VanKeulen
-// CS4050
-// Professor Aaron Gordon 
-// Programming Assignment #3
 
 function randInt(min, max) {
 	return Math.floor(min + Math.random() * (max - min));
