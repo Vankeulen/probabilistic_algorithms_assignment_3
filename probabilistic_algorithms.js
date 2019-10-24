@@ -6,12 +6,12 @@ function randInt(min, max) {
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
-// 1: Probalistic Pi
+// 1: Probabilistic Pi
 function pi() {
 	// Function to calculate pi by tossing darts
 	// circle is unit circle, r=1 around (0,0)
 	// rectangle is (-1,-1) to (1,1)
-	function probalisticPI(darts) {
+	function probabilisticPI(darts) {
 		// Track # of darts that hit
 		let hits = 0;
 
@@ -35,23 +35,23 @@ function pi() {
 	}
 
 	// Do it with increasing numbers of darts
-	probalisticPI(parseInt("1,000".replace(/,/g, "")));
-	probalisticPI(parseInt("10,000".replace(/,/g, "")));
-	probalisticPI(parseInt("100,000".replace(/,/g, "")));
-	probalisticPI(parseInt("1,000,000".replace(/,/g, "")));
-	probalisticPI(parseInt("100,000,000".replace(/,/g, "")));
-	// probalisticPI(parseInt("1,000,000,000".replace(/,/g, "")));
+	probabilisticPI(parseInt("1,000".replace(/,/g, "")));
+	probabilisticPI(parseInt("10,000".replace(/,/g, "")));
+	probabilisticPI(parseInt("100,000".replace(/,/g, "")));
+	probabilisticPI(parseInt("1,000,000".replace(/,/g, "")));
+	probabilisticPI(parseInt("100,000,000".replace(/,/g, "")));
+	// probabilisticPI(parseInt("1,000,000,000".replace(/,/g, "")));
 }
 pi();
 
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
-// 2: Probalistic Primes
+// 2: Probabilistic Primes
 function primes() {
 	// Check if number P is a prime
 	// by randomly selecting k values, from (1 < n < P)
-	function probalisticPrime(P, k) {
+	function probabilisticPrime(P, k) {
 		// Ignore 0/1, they do not count as primes
 		if (P === 0 || P === 1) { return false; }
 
@@ -59,7 +59,7 @@ function primes() {
 		for (let i = 0; i < k; i++) {
 			// pick value n from (1 < n < P)
 			let n = randInt(2, P);
-			
+
 
 			// Could improve accuracy by not using 
 			// numbers between (P/2 and P)
@@ -104,8 +104,8 @@ function primes() {
 	let primesList = allPrimes(MAX_VALUE);
 
 
-	// Check a single value with probalisticPrime with some k-value
-	function checkProbalisticPrime(val, k) {
+	// Check a single value with probabilisticPrime with some k-value
+	function checkProbabilisticPrime(val, k) {
 		// Default k-value of 10
 		if (k === undefined) { k = 10; }
 
@@ -116,7 +116,7 @@ function primes() {
 		let actuallyAPrime = primesList.includes(val);
 		for (let i = 0; i < 1000; i++) {
 			// Guess at if the value is prime or not
-			let probAPrime = probalisticPrime(val, k);
+			let probAPrime = probabilisticPrime(val, k);
 
 			// And see if we got it right or wrong
 			if (probAPrime === actuallyAPrime) {
@@ -142,63 +142,63 @@ function primes() {
 	for (let k = 10; k <= 10000; k *= 10) {
 
 		console.log("Some composite numbers");
-		checkProbalisticPrime(2 * 2 * 2 * 2 * 3 * 3 * 3, k);
-		checkProbalisticPrime(2 * 3 * 4 * 5 * 6, k);
-		checkProbalisticPrime(2 * 3 * 4 * 5 * 6 * 7, k);
+		checkProbabilisticPrime(2 * 2 * 2 * 2 * 3 * 3 * 3, k);
+		checkProbabilisticPrime(2 * 3 * 4 * 5 * 6, k);
+		checkProbabilisticPrime(2 * 3 * 4 * 5 * 6 * 7, k);
 
 		console.log("Some prime numbers");
-		checkProbalisticPrime(4637, k);
-		checkProbalisticPrime(1993, k);
+		checkProbabilisticPrime(4637, k);
+		checkProbabilisticPrime(1993, k);
 
 		// Even numbers
 		console.log("Multiples of 2");
-		checkProbalisticPrime(8, k);
-		checkProbalisticPrime(40, k);
-		checkProbalisticPrime(46, k);
-		checkProbalisticPrime(80, k);
-		checkProbalisticPrime(442, k);
-		checkProbalisticPrime(222, k);
-		checkProbalisticPrime(4444, k);
-		checkProbalisticPrime(44444, k);
-		checkProbalisticPrime(44448, k);
+		checkProbabilisticPrime(8, k);
+		checkProbabilisticPrime(40, k);
+		checkProbabilisticPrime(46, k);
+		checkProbabilisticPrime(80, k);
+		checkProbabilisticPrime(442, k);
+		checkProbabilisticPrime(222, k);
+		checkProbabilisticPrime(4444, k);
+		checkProbabilisticPrime(44444, k);
+		checkProbabilisticPrime(44448, k);
 		// Numbers where the sum of the digits is divisible by 3. 
 		console.log("Multiples of 3");
 		// 4+4+4+3 = 15, 15%3 = 0
-		checkProbalisticPrime(33, k);
-		checkProbalisticPrime(36, k);
-		checkProbalisticPrime(66, k);
-		checkProbalisticPrime(99, k);
-		checkProbalisticPrime(123, k);
-		checkProbalisticPrime(156, k);
-		checkProbalisticPrime(231, k);
-		checkProbalisticPrime(423, k);
-		checkProbalisticPrime(4443, k);
+		checkProbabilisticPrime(33, k);
+		checkProbabilisticPrime(36, k);
+		checkProbabilisticPrime(66, k);
+		checkProbabilisticPrime(99, k);
+		checkProbabilisticPrime(123, k);
+		checkProbabilisticPrime(156, k);
+		checkProbabilisticPrime(231, k);
+		checkProbabilisticPrime(423, k);
+		checkProbabilisticPrime(4443, k);
 		// 4+4+4+3+3 = 18, 18%3 = 0
-		checkProbalisticPrime(44433, k);
+		checkProbabilisticPrime(44433, k);
 		// Numbers whose final digit is a 5 
 		console.log("Multiples of 5");
 		// (anything ending in '5' in decimal is obviously a multiple of 5)
-		checkProbalisticPrime(45, k);
-		checkProbalisticPrime(65, k);
-		checkProbalisticPrime(445, k);
-		checkProbalisticPrime(645, k);
-		checkProbalisticPrime(745, k);
-		checkProbalisticPrime(4445, k);
-		checkProbalisticPrime(44445, k);
+		checkProbabilisticPrime(45, k);
+		checkProbabilisticPrime(65, k);
+		checkProbabilisticPrime(445, k);
+		checkProbabilisticPrime(645, k);
+		checkProbabilisticPrime(745, k);
+		checkProbabilisticPrime(4445, k);
+		checkProbabilisticPrime(44445, k);
 		// Number constructed as the product of two positive integers.
 		console.log("Composites constructed from products");
-		checkProbalisticPrime(37 * 53, k);
+		checkProbabilisticPrime(37 * 53, k);
 		for (let j = 0; j < 10; j++) {
 			let val1 = Math.floor(Math.random() * SQRT_MAX_VALUE);
 			let val2 = Math.floor(Math.random() * SQRT_MAX_VALUE);
-			checkProbalisticPrime(val1 * val2, k);
+			checkProbabilisticPrime(val1 * val2, k);
 		}
 
 		for (let j = 0; j < 10; j++) {
 			let val3 = Math.floor(Math.random() * 100);
 			let val4 = Math.floor(Math.random() * 100);
-			checkProbalisticPrime(val3 * val4, k);
-			
+			checkProbabilisticPrime(val3 * val4, k);
+
 		}
 
 
@@ -206,17 +206,17 @@ function primes() {
 		// X = X - X%K <-- X will now be divisible by K. 
 		console.log("Modified prime numbers");
 		for (let j = 0; j < 5; j++) {
-			checkProbalisticPrime(makeNonPrime(100), k);
+			checkProbabilisticPrime(makeNonPrime(100), k);
 		}
 		for (let j = 0; j < 5; j++) {
-			checkProbalisticPrime(makeNonPrime(1000), k);
+			checkProbabilisticPrime(makeNonPrime(1000), k);
 		}
 		for (let j = 0; j < 5; j++) {
-			checkProbalisticPrime(makeNonPrime(10000), k);
+			checkProbabilisticPrime(makeNonPrime(10000), k);
 		}
 		for (let j = 0; j < 5; j++) {
-		
-			checkProbalisticPrime(makeNonPrime(100000), k);
+
+			checkProbabilisticPrime(makeNonPrime(100000), k);
 		}
 	}
 
@@ -227,61 +227,76 @@ primes();
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
-// 3: Probalistic search
-function search(times) {
-	// Build a random array 
-	let nums = []
-	for (let i = 0; i < 1000; i++) {
-		let num = randInt(0, 10);
-		nums.push(num);
+// 3: Probabilistic search
+function avgSearch() {
+	let times = 100;
+	let sumWrong = 0;
+	let avgWrong = 0;
+	let globalSumComparisons = 0;
+	let globalAvgComparisons = 0;
+	let runs = 10000;
+	for (let i = 0; i < runs; i++) {
+		search(times);
 	}
 
-	let numIterations = 0;
-	// Search an array for a target randomly
-	function probalisticSearch(arr, target) {
-		numIterations = 0;
-		// Make up to 5000 guesses as asked
-		for (let i = 0; i < 5000; i++) {
-			// Pick an index
-			let ind = randInt(0, arr.length);
-			numIterations++;
-			// See if target value is there
-			if (arr[ind] === target) {
-				// yay
-				return true;
+	globalAvgComparisons = globalSumComparisons / runs;
+	avgWrong = sumWrong / runs;
+
+	console.log(`Search was wrong an average of ${avgWrong} times out of ${times}. With an average number of ${globalAvgComparisons} Comparisons. With a total of ${runs} runs.`);
+
+	function search(times) {
+		// Build a random array 
+		let nums = []
+		for (let i = 0; i < 1000; i++) {
+			let num = randInt(0, 10000);
+			nums.push(num);
+		}
+
+		let numIterations = 0;
+		// Search an array for a target randomly
+		function probabilisticSearch(arr, target) {
+			numIterations = 0;
+			// Make up to 5000 guesses as asked
+			for (let i = 0; i < 5000; i++) {
+				// Pick an index
+				let ind = randInt(0, arr.length);
+				numIterations++;
+				// See if target value is there
+				if (arr[ind] === target) {
+					// yay
+					return true;
+				}
+			}
+			// if we miss every time,
+			// say it's not there 
+			return false;
+		}
+
+		// Count times we get it wrong
+
+		let wrong = 0;
+		let sumComparisons = 0;
+		for (let i = 0; i < times; i++) {
+			// Find a value that is in the array
+			// pick an index and get the value...
+			let ind = randInt(0, nums.length);
+			let val = nums[ind];
+
+			// And try searching for that value
+			let probSearch = probabilisticSearch(nums, val);
+			sumComparisons += numIterations;
+			if (!probSearch) {
+				wrong += 1;
 			}
 		}
-		// if we miss every time,
-		// say it's not there 
-		return false;
+		let averageComparisons = sumComparisons / times;
+		// console.log(`Search was wrong ${wrong} times out of ${times}. With an average number of ${averageComparisons} Comparisons`);
+
+		globalSumComparisons += averageComparisons;
+		sumWrong += wrong;
 	}
-
-	// Count times we get it wrong
-
-	let wrong = 0;
-	let sumComparisons = 0;
-	for (let i = 0; i < times; i++) {
-		// Find a value that is in the array
-		// pick an index and get the value...
-		let ind = randInt(0, nums.length);
-		let val = nums[ind];
-
-		// And try searching for that value
-		let probSearch = probalisticSearch(nums, val);
-		sumComparisons += numIterations;
-		if (!probSearch) {
-			wrong += 1;
-		}
-	}
-	let averageComparisons = sumComparisons / times;
-	console.log(`Search was wrong ${wrong} times out of ${times}. With an average number of ${averageComparisons} Comparisons`);
-
-
 }
-for (let i = 0; i < 20; i++) {
-	search(100);
-}
-
+avgSearch();
 
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -349,7 +364,7 @@ function monteCarloIntegration() {
 
 	// More canon mathematical integration
 	// Sum areas of a bunch of trapezoids along a function
-	function trapizoidal(f, n, left, right) {
+	function trapezoidal(f, n, left, right) {
 		let sum = 0;
 		// Width of region
 		let w = right - left;
@@ -433,7 +448,7 @@ function monteCarloIntegration() {
 		let meanTime = endMean - startMean;
 
 		let startTrap = new Date().getTime();
-		let trapResult = trapizoidal(f, n, left, right);
+		let trapResult = trapezoidal(f, n, left, right);
 		let endTrap = new Date().getTime();
 		let trapTime = endTrap - startTrap;
 
@@ -450,7 +465,7 @@ function monteCarloIntegration() {
 	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
 		check(yequalsx, "f(x) = x", darts, unitRect)
 	}
-	
+
 	console.log("\n\nf(x)=x in (0, 1)");
 	let rect2 = { left: 0, right: 1, top: 1, bottom: 0 };
 	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
@@ -458,11 +473,11 @@ function monteCarloIntegration() {
 	}
 	console.log("\n\nf(x)=sin(2x/PI) in (-1, 1)");
 	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
-		check(sin(1, 2/Math.PI), "f(x) = sin(2x/PI)", darts, unitRect)
+		check(sin(1, 2 / Math.PI), "f(x) = sin(2x/PI)", darts, unitRect)
 	}
 	console.log("\n\nf(x)=sin(2x/PI) in (0, 1)");
 	for (let darts = 10; darts <= MAX_DARTS; darts *= 10) {
-		check(sin(1, 2/Math.PI), "f(x) = sin(2x/PI)", darts, rect2)
+		check(sin(1, 2 / Math.PI), "f(x) = sin(2x/PI)", darts, rect2)
 	}
 	// Experiment for calculating pi/2
 	/*
